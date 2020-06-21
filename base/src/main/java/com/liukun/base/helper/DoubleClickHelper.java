@@ -3,14 +3,15 @@ package com.liukun.base.helper;
 import android.os.SystemClock;
 
 /**
- *    author : Android 轮子哥
- *    github : https://github.com/getActivity/AndroidProject
- *    time   : 2018/10/18
- *    desc   : 防双击判断工具类
+ * Author: liukun on 2020/6/7.
+ * Mail  : 3266817262@qq.com
+ * Description   : 防双击判断工具类
  */
 public final class DoubleClickHelper {
 
-    /** 数组的长度为2代表只记录双击操作 */
+    /**
+     * 数组的长度为2代表只记录双击操作
+     */
     private static final long[] TIME_ARRAY = new long[2];
 
     /**
