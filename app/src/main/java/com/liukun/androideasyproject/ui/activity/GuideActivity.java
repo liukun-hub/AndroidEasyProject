@@ -5,7 +5,6 @@ import android.widget.ImageView;
 
 
 import com.liukun.androideasyproject.R;
-import com.liukun.androideasyproject.aop.SingleClick;
 import com.liukun.androideasyproject.commom.MyActivity;
 import com.liukun.androideasyproject.ui.adapter.GuidePagerAdapter;
 import com.rd.PageIndicatorView;
@@ -47,7 +46,6 @@ public final class GuideActivity extends MyActivity
         mViewPager.addOnPageChangeListener(this);
     }
 
-    @SingleClick
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.iv_guide_complete) {

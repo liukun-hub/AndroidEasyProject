@@ -12,8 +12,6 @@ import android.widget.ProgressBar;
 
 import com.liukun.androideasyproject.R;
 import com.liukun.androideasyproject.action.StatusAction;
-import com.liukun.androideasyproject.aop.CheckNet;
-import com.liukun.androideasyproject.aop.SingleClick;
 import com.liukun.androideasyproject.commom.MyActivity;
 import com.liukun.androideasyproject.helper.IntentKey;
 import com.liukun.androideasyproject.widget.BrowserView;
@@ -40,7 +38,6 @@ public class BrowserActivity extends MyActivity implements StatusAction, OnRefre
     @BindView(R.id.hl_browser_hint)
     HintLayout mHlBrowserHint;
 
-    @CheckNet
     public static void start(Context context, String url) {
         if (url == null || "".equals(url)) {
             return;
@@ -50,7 +47,6 @@ public class BrowserActivity extends MyActivity implements StatusAction, OnRefre
         context.startActivity(intent);
     }
 
-    @CheckNet
     public static void start(Context context, String url, String title) {
         if (url == null || "".equals(url)) {
             return;
@@ -102,8 +98,6 @@ public class BrowserActivity extends MyActivity implements StatusAction, OnRefre
     /**
      * 重新加载当前页
      */
-    @SingleClick
-    @CheckNet
     private void reload() {
         mWvBrowserView.reload();
     }

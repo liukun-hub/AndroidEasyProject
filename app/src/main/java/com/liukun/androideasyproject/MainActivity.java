@@ -8,7 +8,6 @@ import rx.schedulers.Schedulers;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.liukun.androideasyproject.aop.Permissions;
 import com.liukun.androideasyproject.net.Api;
 import com.liukun.androideasyproject.ui.bean.ChaptersBean;
 import com.liukun.androideasyproject.ui.bean.ChaptersDetailBean;
@@ -21,7 +20,6 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    @Permissions({"android.permission.INTERNET"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
