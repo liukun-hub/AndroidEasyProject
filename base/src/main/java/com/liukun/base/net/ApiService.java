@@ -8,7 +8,7 @@ import rx.Observable;
  * Description: 用于封装get、post等请求方法
  */
 public interface ApiService {
-    String HOST = "https://wanandroid.com/";        //接口地址
+    String HOST = "http://jianyunkeji.oss-cn-beijing.aliyuncs.com";        //接口地址
 
 
 }

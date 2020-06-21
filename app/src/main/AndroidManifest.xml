@@ -36,7 +36,6 @@
         </provider>
 
 
-
         <!-- 引导界面 -->
         <activity
             android:name=".ui.activity.GuideActivity"

@@ -11,12 +11,16 @@ import com.hjq.bar.TitleBar;
 import com.hjq.bar.style.TitleBarLightStyle;
 import com.hjq.toast.ToastInterceptor;
 import com.hjq.toast.ToastUtils;
+import com.liukun.androideasyproject.MyEventBusIndex;
 import com.liukun.androideasyproject.R;
+import com.liukun.androideasyproject.helper.EventBusHelper;
 import com.liukun.base.helper.ActivityStackManager;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.tencent.mmkv.MMKV;
+
+import org.greenrobot.eventbus.EventBus;
 
 import okhttp3.OkHttpClient;
 
@@ -29,9 +33,10 @@ public class MyApplication extends Application {
 
     private static Context context;
 
-    public static Context getMyApplicationContext(){
+    public static Context getMyApplicationContext() {
         return context;
     }
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -79,6 +84,19 @@ public class MyApplication extends Application {
             }
         });
 
+        //初始化 EventBus
+        EventBusHelper.init();
+
+        // 设置全局的 Header 构建器
+        SmartRefreshLayout.setDefaultRefreshHeaderCreator((context, layout) -> new ClassicsHeader(context).setEnableLastTime(false));
+        // 设置全局的 Footer 构建器
+        SmartRefreshLayout.setDefaultRefreshFooterCreator((context, layout) -> new ClassicsFooter(context).setDrawableSize(20));
+
+        // Activity 栈管理初始化
+        ActivityStackManager.getInstance().init(application);
+
+
+
 //        // Bugly 异常捕捉
 //        CrashReport.initCrashReport(application, AppConfig.getBuglyId(), false);
 //
@@ -96,37 +114,6 @@ public class MyApplication extends Application {
 //                //.eventListener(new YourCustomEventListener())
 //                .apply();
 
-        // 设置全局的 Header 构建器
-        SmartRefreshLayout.setDefaultRefreshHeaderCreator((context, layout) -> new ClassicsHeader(context).setEnableLastTime(false));
-        // 设置全局的 Footer 构建器
-        SmartRefreshLayout.setDefaultRefreshFooterCreator((context, layout) -> new ClassicsFooter(context).setDrawableSize(20));
-
-        // Activity 栈管理初始化
-        ActivityStackManager.getInstance().init(application);
-
-//        // 网络请求框架初始化
-//        IRequestServer server;
-//        if (AppConfig.isDebug()) {
-//            server = new TestServer();
-//        } else {
-//            server = new ReleaseServer();
-//        }
-//
-//        EasyConfig.with(new OkHttpClient())
-//                // 是否打印日志
-//                .setLogEnabled(AppConfig.isDebug())
-//                // 设置服务器配置
-//                .setServer(server)
-//                // 设置请求处理策略
-//                .setHandler(new RequestHandler())
-//                // 设置请求重试次数
-//                .setRetryCount(3)
-//                // 添加全局请求参数
-//                //.addParam("token", "6666666")
-//                // 添加全局请求头
-//                //.addHeader("time", "20191030")
-//                // 启用配置
-//                .into();
 //
 //        // Activity 侧滑返回
 //        SmartSwipeBack.activitySlidingBack(application, activity -> {

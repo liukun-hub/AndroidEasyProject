@@ -36,8 +36,8 @@ public interface Api {
 //    @POST("musicDetails")   //方法名
 //    Observable<BaseReponse<List<MeiZiResponse>>> getInfo(@Field("id") String data);//请求参数
 
-    @GET("wxarticle/chapters/json")
-    Observable<BaseResponse<List<ChaptersBean>>> getChapters();
+    @GET("http://jianyun-public.oss-cn-beijing.aliyuncs.com/config/soldier/remotever.json")
+    Observable<BaseResponse<Object>> getChapters();
 
     ///405/1/json?k=Java
     @GET("wxarticle/list/{id}/{page}/json?k=Java")

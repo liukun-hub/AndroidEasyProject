@@ -29,8 +29,8 @@ public class InterceptorUtil {
         return new Interceptor() {
             @Override
             public Response intercept(Interceptor.Chain chain) throws IOException {
-                Request request=chain.request().newBuilder().
-                        addHeader("Content-Type","application/json;charSet=UTF-8")
+                Request request=chain.request().newBuilder()
+                        .addHeader("Content-Type","application/json;charSet=UTF-8")
                         .build();
                 return chain.proceed(request);
             }

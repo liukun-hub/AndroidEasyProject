@@ -7,7 +7,12 @@ import com.gyf.immersionbar.ImmersionBar;
 import com.hjq.bar.TitleBar;
 import com.liukun.androideasyproject.action.TitleBarAction;
 import com.liukun.androideasyproject.action.ToastAction;
+import com.liukun.androideasyproject.helper.EventBusHelper;
 import com.liukun.base.BaseFragment;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import androidx.annotation.Nullable;
 import butterknife.ButterKnife;
@@ -39,6 +44,7 @@ public abstract class MyFragment<A extends MyActivity> extends BaseFragment<A>
 
         initImmersion();
         super.initFragment();
+        EventBusHelper.register(this);
     }
 
     /**
@@ -53,6 +59,11 @@ public abstract class MyFragment<A extends MyActivity> extends BaseFragment<A>
                 ImmersionBar.setTitleBar(this, mTitleBar);
             }
         }
+    }
+
+    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
+    public void getStickyMessage(MessageWrap<?> messageWrap) {
+
     }
 
     /**
@@ -125,18 +136,26 @@ public abstract class MyFragment<A extends MyActivity> extends BaseFragment<A>
         super.onResume();
         // 重新初始化状态栏
         statusBarConfig().init();
-//        UmengClient.onResume(this);
     }
 
     @Override
     public void onPause() {
-//        UmengClient.onPause(this);
         super.onPause();
     }
 
     @Override
     public void onDetach() {
-//        EasyHttp.cancel(this);
         super.onDetach();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+    }
+
+    @Override
+    public void onDestroy() {
+        EventBusHelper.unregister(this);
+        super.onDestroy();
     }
 }

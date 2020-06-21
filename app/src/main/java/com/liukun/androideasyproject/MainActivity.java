@@ -26,50 +26,28 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        RetrofitFactory.getInstance().create(Api.class)
-                .getChapters()
-                .subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new BaseSubscriber<List<ChaptersBean>>(MainActivity.this) {
-                    @Override
-                    public void onSuccess(BaseResponse<List<ChaptersBean>> baseResponse) {
-//                        Log.d("MainActivityTAG", "onSuccess: " + baseResponse.getData().toString());
-
-                        RetrofitFactory.getInstance().create(Api.class)
-                                .getChaptersDetail(baseResponse.getData().get(0).getId(), 1)
-                                .subscribeOn(Schedulers.io())
-                                .unsubscribeOn(Schedulers.io())
-                                .observeOn(AndroidSchedulers.mainThread())
-                                .subscribe(new BaseSubscriber<ChaptersDetailBean>(MainActivity.this) {
-
-                                    @Override
-                                    public void onSuccess(BaseResponse<ChaptersDetailBean> baseResponse) {
-
-                                    }
-
-                                    @Override
-                                    public void onCodeError(BaseResponse baseResponse) {
-
-                                    }
-
-                                    @Override
-                                    public void onFailure(Throwable e, String message)  {
-
-                                    }
-                                });
-                    }
-
-                    @Override
-                    public void onCodeError(BaseResponse baseResponse) {
-
-                    }
-
-                    @Override
-                    public void onFailure(Throwable e, String message) {
-
-                    }
-                });
+//        RetrofitFactory.getInstance().create(Api.class)
+//                .getChapters()
+//                .subscribeOn(Schedulers.io())
+//                .unsubscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new BaseSubscriber<Object>(MainActivity.this) {
+//                    @Override
+//                    public void onSuccess(BaseResponse<Object> baseResponse) {
+////                        Log.d("MainActivityTAG", "onSuccess: " + baseResponse.getData().toString());
+//
+//                    }
+//
+//                    @Override
+//                    public void onCodeError(BaseResponse baseResponse) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onFailure(Throwable e, String message) {
+//
+//                    }
+//                });
 
 
     }

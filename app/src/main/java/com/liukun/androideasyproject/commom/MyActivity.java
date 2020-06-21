@@ -3,6 +3,7 @@ package com.liukun.androideasyproject.commom;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 
@@ -11,10 +12,13 @@ import com.hjq.bar.TitleBar;
 import com.liukun.androideasyproject.R;
 import com.liukun.androideasyproject.action.TitleBarAction;
 import com.liukun.androideasyproject.action.ToastAction;
+import com.liukun.androideasyproject.helper.EventBusHelper;
 import com.liukun.base.BaseActivity;
 import com.liukun.base.BaseDialog;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
@@ -92,6 +96,7 @@ public abstract class MyActivity extends BaseActivity implements ToastAction, Ti
 
         ButterKnife.bind(this);
         initImmersion();
+        EventBusHelper.register(this);
     }
 
     /**
@@ -191,28 +196,17 @@ public abstract class MyActivity extends BaseActivity implements ToastAction, Ti
         onBackPressed();
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-//        EventBus.getDefault().register(this);
-    }
-    @Override
-    public void onStop() {
-        super.onStop();
-//        EventBus.getDefault().unregister(this);
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void getMessage(MessageWrap<?> messageWrap) {
+
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-//        UmengClient.onResume(this);
+    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
+    public void getStickyMessage(MessageWrap<?> messageWrap) {
+
     }
 
-    @Override
-    protected void onPause() {
-//        UmengClient.onPause(this);
-        super.onPause();
-    }
 
     @Override
     public void startActivityForResult(Intent intent, int requestCode, @Nullable Bundle options) {
@@ -233,6 +227,7 @@ public abstract class MyActivity extends BaseActivity implements ToastAction, Ti
             mDialog.dismiss();
         }
         mDialog = null;
+        EventBusHelper.unregister(this);
         super.onDestroy();
     }
 }
