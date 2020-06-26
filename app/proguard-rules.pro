@@ -184,6 +184,14 @@ public static final int *;
 -dontwarn com.liukun.androideasyproject.ui.bean.**
 #对含有反射类的处理
 -keep class com.liukun.androideasyproject.ui.bean.** { *; }
+
+
+ -dontwarn com.liukun.androideasyproject.commom.**
+ -keep class com.liukun.androideasymvp.commom.** {*;}
+
+ -dontwarn com.liukun.base.net.**
+ -keep class com.liukun.base.net.** {*;}
+
 #
 # ----------------------------- 其他的 -----------------------------
 #

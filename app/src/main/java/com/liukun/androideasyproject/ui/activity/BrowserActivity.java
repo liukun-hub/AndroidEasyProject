@@ -87,7 +87,7 @@ public class BrowserActivity extends MyActivity implements StatusAction, OnRefre
 
     @Override
     public HintLayout getHintLayout() {
-        return null;
+        return mHlBrowserHint;
     }
 
     @Override

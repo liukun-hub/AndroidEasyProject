@@ -1,23 +1,15 @@
 package com.liukun.androideasyproject.ui.frament;
 
-import android.util.Log;
-import android.view.View;
 import android.widget.TextView;
 
 import com.liukun.androideasyproject.R;
 import com.liukun.androideasyproject.commom.MessageWrap;
 import com.liukun.androideasyproject.commom.MyFragment;
 import com.liukun.androideasyproject.helper.EventBusHelper;
-import com.liukun.androideasyproject.net.Api;
 import com.liukun.androideasyproject.ui.activity.HomeActivity;
 import com.liukun.androideasyproject.ui.bean.ChaptersBean;
-import com.liukun.base.net.BaseResponse;
-import com.liukun.base.net.RetrofitFactory;
 
 import butterknife.BindView;
-import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 /**
  *

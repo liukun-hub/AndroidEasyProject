@@ -22,20 +22,25 @@ public class RetrofitFactory {
             addNetworkInterceptor(InterceptorUtil.HeaderInterceptor())       //绑定header拦截器
             .build();
 
-    Retrofit retrofit = new Retrofit.Builder().
-            addConverterFactory(GsonConverterFactory.create()).             //设置gson转换器,将返回的json数据转为实体
-            addCallAdapterFactory(RxJavaCallAdapterFactory.create()).       //设置CallAdapter
-            baseUrl(ApiService.HOST).
-            client(client)                                                  //设置客户端okhttp相关参数
-            .build();
-
+    Retrofit retrofit;
 
     public static RetrofitFactory instance;
 //    public ApiService apiService = retrofit.create(ApiService.class);         //通过retrofit的实例,获取ApiServise接口的实例
 
+    public void init(String baseUrl) {
+        retrofit = new Retrofit.Builder().
+                addConverterFactory(GsonConverterFactory.create()).             //设置gson转换器,将返回的json数据转为实体
+                addCallAdapterFactory(RxJavaCallAdapterFactory.create()).       //设置CallAdapter
+                baseUrl(baseUrl).
+                client(client)                                                  //设置客户端okhttp相关参数
+                .build();
+
+    }
+
     private RetrofitFactory() {
 
     }
+
     public <T> T create(Class<T> service) {
         return retrofit.create(service);
     }
