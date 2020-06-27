@@ -15,6 +15,7 @@ import com.liukun.androideasyproject.MyEventBusIndex;
 import com.liukun.androideasyproject.R;
 import com.liukun.androideasyproject.helper.EventBusHelper;
 import com.liukun.base.helper.ActivityStackManager;
+import com.liukun.base.helper.LogUtil;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
@@ -51,6 +52,8 @@ public class MyApplication extends Application {
     public static void initSDK(Application application) {
         // 友盟统计、登录、分享 SDK
 //        UmengClient.init(application);
+        //日志工具
+        LogUtil.init(true, "logUntil");
 
         MMKV.initialize(application);
         // 吐司工具类
