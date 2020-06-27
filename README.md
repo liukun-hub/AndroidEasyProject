@@ -1,8 +1,7 @@
 # AndroidEasyProject
-Android 快速开发框架 
+Android 快速开发框架  只是自己练手 和开发用的
 ## TOTO
- 混淆规则的完善
- evenbus的接入
+ 图片库的策略
  
  
  # 使用
