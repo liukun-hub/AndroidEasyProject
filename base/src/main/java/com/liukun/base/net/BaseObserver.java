@@ -8,7 +8,7 @@ import java.net.ConnectException;
 import java.net.UnknownHostException;
 import java.util.concurrent.TimeoutException;
 
-import rx.Observer;
+import io.reactivex.Observer;
 
 /**
  * Author: liukun on 2020/6/7.
@@ -23,7 +23,7 @@ public abstract class BaseObserver<T> implements Observer<BaseResponse<T>> {
     }
 
     @Override
-    public void onCompleted() {
+    public void onComplete() {
 
     }
 

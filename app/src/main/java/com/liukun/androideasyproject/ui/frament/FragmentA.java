@@ -8,6 +8,7 @@ import com.liukun.androideasyproject.commom.MyFragment;
 import com.liukun.androideasyproject.helper.EventBusHelper;
 import com.liukun.androideasyproject.ui.activity.HomeActivity;
 import com.liukun.androideasyproject.ui.bean.ChaptersBean;
+import com.liukun.base.net.RetrofitFactory;
 
 import butterknife.BindView;
 

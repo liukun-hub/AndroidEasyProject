@@ -8,20 +8,20 @@ import android.widget.Toast;
 import com.google.gson.JsonParseException;
 
 import org.json.JSONException;
+import org.reactivestreams.Subscriber;
 
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 import java.util.concurrent.TimeoutException;
 
-import rx.Subscriber;
 
 /**
  * Author: liukun on 2020/6/7.
  * Mail  : 3266817262@qq.com
  * Description:主要是请求成功失败、网络异常时的回调,它实现的Observer类,其中成功失败主要在Onext方法里处理
  */
-public abstract class BaseSubscriber<T> extends Subscriber<BaseResponse<T>> {
+public abstract class BaseSubscriber<T> implements Subscriber<BaseResponse<T>> {
     private Context mContext;
 
     public BaseSubscriber(Context mContext) {
@@ -29,7 +29,7 @@ public abstract class BaseSubscriber<T> extends Subscriber<BaseResponse<T>> {
     }
 
     @Override
-    public void onCompleted() {
+    public void onComplete() {
 
     }
 
