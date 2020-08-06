@@ -1,7 +1,9 @@
 package com.liukun.androideasyproject.ui.frament;
 
+import android.view.View;
 import android.widget.TextView;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.liukun.androideasyproject.R;
 import com.liukun.androideasyproject.commom.MessageWrap;
 import com.liukun.androideasyproject.commom.MyFragment;
@@ -33,6 +35,7 @@ public final class FragmentA extends MyFragment<HomeActivity> {
     protected void initView() {
 
     }
+
     @Override
     protected void initData() {
         mText.setOnClickListener(this);
@@ -44,6 +47,10 @@ public final class FragmentA extends MyFragment<HomeActivity> {
                     .setCode(0)
                     .create();
             EventBusHelper.postStickyMessage(chaptersBeanMessageWrap);
+//            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment, FragmentB.newInstance()).commit();
+//            getActivity().
+            BottomNavigationView bottomNavigationView = getActivity().findViewById(R.id.bv_home_navigation);
+            bottomNavigationView.setSelectedItemId(R.id.home_message);
         });
     }
 }

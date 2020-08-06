@@ -15,6 +15,7 @@ import com.liukun.androideasyproject.action.ToastAction;
 import com.liukun.androideasyproject.helper.EventBusHelper;
 import com.liukun.base.BaseActivity;
 import com.liukun.base.BaseDialog;
+import com.liukun.base.widget.dialog.WaitDialog;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;

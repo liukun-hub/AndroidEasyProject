@@ -4,15 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:fitsSystemWindows="true"
+    android:orientation="vertical"
     tools:context=".ui.activity.HomeActivity">
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/vp_home_pager"
+    <!--    <androidx.viewpager.widget.ViewPager-->
+    <!--        android:id="@+id/vp_home_pager"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="0px"-->
+    <!--        android:layout_weight="1" />-->
+    <FrameLayout
+        android:id="@+id/fragment"
         android:layout_width="match_parent"
         android:layout_height="0px"
         android:layout_weight="1" />
-
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bv_home_navigation"

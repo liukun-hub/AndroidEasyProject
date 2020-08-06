@@ -9,19 +9,29 @@ public class BaseResponse<T> {
     private static int SUCCESS_CODE = 200;//成功的code
     private int code;                   //响应码
     private String message;             //提示信息
+    private boolean success;             //提示信息
     private T data;                  //返回的具体数据
 
     public boolean isSuccess() {
-        return getCode() == SUCCESS_CODE;
+        return success;
     }
 
-    public static int getSuccessCode() {
-        return SUCCESS_CODE;
+    public void setSuccess(boolean success) {
+        this.success = success;
     }
 
-    public static void setSuccessCode(int successCode) {
-        SUCCESS_CODE = successCode;
-    }
+
+    //    public boolean isSuccess() {
+//        return getCode() == SUCCESS_CODE;
+//    }
+//
+//    public static int getSuccessCode() {
+//        return SUCCESS_CODE;
+//    }
+//
+//    public static void setSuccessCode(int successCode) {
+//        SUCCESS_CODE = successCode;
+//    }
 
     public int getCode() {
         return code;

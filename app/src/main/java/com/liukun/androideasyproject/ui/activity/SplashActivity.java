@@ -10,8 +10,17 @@ import android.view.View;
 import com.airbnb.lottie.LottieAnimationView;
 import com.gyf.immersionbar.BarHide;
 import com.gyf.immersionbar.ImmersionBar;
+import com.hjq.permissions.OnPermission;
+import com.hjq.permissions.Permission;
+import com.hjq.permissions.XXPermissions;
 import com.liukun.androideasyproject.R;
 import com.liukun.androideasyproject.commom.MyActivity;
+import com.liukun.base.net.RetrofitFactory;
+import com.liukun.base.net.baseconfig.BaseConfigHelper;
+import com.liukun.base.net.baseconfig.IBaseConfig;
+import com.liukun.base.net.model.ConfigInfoBean;
+
+import java.util.List;
 
 import androidx.appcompat.widget.AppCompatTextView;
 import butterknife.BindView;
@@ -45,6 +54,7 @@ public class SplashActivity extends MyActivity {
             }
         });
     }
+
     /**
      * 隐藏虚拟按键，并且全屏
      */
@@ -61,10 +71,38 @@ public class SplashActivity extends MyActivity {
         }
 
     }
+
     @Override
     protected void initData() {
         //获取用户数据
+
+        XXPermissions permission = XXPermissions.with(this)
+                .permission(Permission.CAMERA);
+        permission.request(new OnPermission() {
+            @Override
+            public void hasPermission(List<String> granted, boolean all) {
+                BaseConfigHelper.getInstance().setBaseConfig(false, new IBaseConfig() {
+                    @Override
+                    public void getBaseConfigSuccess(ConfigInfoBean configInfo) {
+                        RetrofitFactory.getInstance().init(configInfo.getBaseUrl());
+                    }
+
+                    @Override
+                    public void getBaseConfigFail(String message) {
+
+                    }
+                });
+
+
+            }
+
+            @Override
+            public void noPermission(List<String> denied, boolean quick) {
+
+            }
+        });
     }
+
     @Override
     public ImmersionBar createStatusBarConfig() {
         return super.createStatusBarConfig()

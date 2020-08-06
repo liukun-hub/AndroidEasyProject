@@ -8,11 +8,11 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
-        android:networkSecurityConfig="@xml/network_security_config"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
         <!-- 友盟多渠道（在 App Gradle 中配置，请不要在此处修改） -->
         <meta-data
             android:name="UMENG_CHANNEL"
@@ -20,10 +20,10 @@
         <!--今日头条屏幕适配方案常 -->
         <meta-data
             android:name="design_width_in_dp"
-            android:value="540"/>
+            android:value="375" />
         <meta-data
             android:name="design_height_in_dp"
-            android:value="960"/>
+            android:value="667" />
         <!-- 适配 Android 7.0 文件意图 -->
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -34,8 +34,6 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
-
-
         <!-- 引导界面 -->
         <activity
             android:name=".ui.activity.GuideActivity"
@@ -49,7 +47,6 @@
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:launchMode="singleTop"
             android:screenOrientation="portrait">
-
             <!-- 程序入口 -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -68,13 +65,15 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 
-        <activity android:name=".ui.activity.CopyActivity"/>
-        <activity android:name=".MainActivity"/>
+        <activity android:name=".ui.activity.CopyActivity" />
+        <activity android:name=".MainActivity" />
         <activity android:name=".ui.activity.BrowserActivity" />
 
     </application>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
 
 </manifest>

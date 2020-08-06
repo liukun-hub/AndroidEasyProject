@@ -6,8 +6,10 @@
     tools:context=".ui.frament.CopyFragment">
 
     <TextView
+        android:gravity="center"
+        android:id="@+id/text"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="D" />
+        android:text="Ddhdhhdhd" />
 
 </FrameLayout>

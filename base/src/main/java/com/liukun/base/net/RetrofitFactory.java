@@ -2,6 +2,11 @@ package com.liukun.base.net;
 
 import java.util.concurrent.TimeUnit;
 
+import io.reactivex.Observable;
+import io.reactivex.ObservableSource;
+import io.reactivex.ObservableTransformer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -41,6 +46,7 @@ public class RetrofitFactory {
 
     }
 
+
     public <T> T create(Class<T> service) {
         return retrofit.create(service);
     }
@@ -56,6 +62,16 @@ public class RetrofitFactory {
         return instance;
     }
 
+    public static <UD> ObservableTransformer<UD, UD> rxStream() {
+        return new ObservableTransformer<UD, UD>() {
+            @Override
+            public ObservableSource<UD> apply(Observable<UD> upstream) {
+                return upstream.subscribeOn(Schedulers.io())
+                        .unsubscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread());
+            }
+        };
+    }
 //    public ApiService getApiService() {
 //        return apiService;
 //    }

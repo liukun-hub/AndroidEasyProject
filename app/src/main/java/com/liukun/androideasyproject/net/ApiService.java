@@ -38,7 +38,7 @@ public interface ApiService {
 
     String HOST = "http://jianyunkeji.oss-cn-beijing.aliyuncs.com";        //接口地址
 
-    @GET("http://jianyun-public.oss-cn-beijing.aliyuncs.com/config/soldier/remotever.json")
+    @GET("/config/soldier/remotever.json")
     Observable<BaseResponse<Object>> getChapters();
 
     ///405/1/json?k=Java

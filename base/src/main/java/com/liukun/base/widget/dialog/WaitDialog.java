@@ -1,12 +1,11 @@
-package com.liukun.androideasyproject.ui.dialog;
+package com.liukun.base.widget.dialog;
 
 import android.content.Context;
 import android.view.View;
 import android.widget.TextView;
 
-
-import com.liukun.androideasyproject.R;
 import com.liukun.base.BaseDialog;
+import com.liukun.base.R;
 import com.liukun.base.action.AnimAction;
 
 import androidx.annotation.StringRes;
@@ -28,7 +27,6 @@ public final class WaitDialog {
             setAnimStyle(AnimAction.TOAST);
             setBackgroundDimEnabled(false);
             setCancelable(false);
-
             mMessageView = findViewById(R.id.tv_wait_message);
         }
 

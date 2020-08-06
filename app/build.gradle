@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+//apply plugin: 'CheckResourcePrefixPlugin'
 //android 配置
 def config = rootProject.ext.android
 //依赖
@@ -103,16 +104,16 @@ android {
 }
 
 dependencies {
-    implementation librarys.libs
-    implementation librarys.appcompat
-    implementation librarys.constraintlayout
-    implementation librarys.junit
-    implementation librarys.test_ext
-    implementation librarys.espresso_core
-    implementation librarys.recyclerview
+    fileTree(dir: "libs", include: ["*.jar"])
+//    implementation librarys.appcompat
+//    implementation librarys.constraintlayout
+//    implementation librarys.junit
+//    implementation librarys.test_ext
+//    implementation librarys.espresso_core
+//    implementation librarys.recyclerview
 
     // 基础库
-    implementation project(':base')
+   implementation project(path: ':base')
     // Dex 分包，解决 64k 方法问题
     //implementation 'androidx.multidex:multidex:2.0.1'
 
@@ -159,7 +160,7 @@ dependencies {
 
     // 动画解析库：https://github.com/airbnb/lottie-android
     // 动画资源：https://lottiefiles.com/
-    implementation 'com.airbnb.android:lottie:3.2.0'
+    implementation 'com.airbnb.android:lottie:3.4.1'
 
     // 上拉刷新下拉加载：https://github.com/scwang90/SmartRefreshLayout
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.3'

@@ -1,16 +1,20 @@
 package com.liukun.androideasyproject.ui.frament;
 
+import android.util.Log;
 import android.widget.TextView;
 
 import com.liukun.androideasyproject.R;
 import com.liukun.androideasyproject.commom.MyFragment;
 import com.liukun.androideasyproject.net.ApiService;
 import com.liukun.androideasyproject.ui.activity.HomeActivity;
+import com.liukun.base.net.BaseObserver;
 import com.liukun.base.net.BaseResponse;
 import com.liukun.base.net.RetrofitFactory;
 
 import butterknife.BindView;
-import io.reactivex.Observer;
+import io.reactivex.Observable;
+import io.reactivex.ObservableSource;
+import io.reactivex.ObservableTransformer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
@@ -37,32 +41,27 @@ public final class FragmentC extends MyFragment<HomeActivity> {
 
     }
 
+
     @Override
     protected void initData() {
         RetrofitFactory.getInstance().create(ApiService.class)
                 .getChapters()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<BaseResponse<Object>>() {
+                .compose(RetrofitFactory.rxStream())
+//                .subscribeOn(Schedulers.io())
+//                .unsubscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new BaseObserver<Object>(getContext()) {
                     @Override
-                    public void onSubscribe(Disposable d) {
-                        showDialog();
+                    public void onSuccess(BaseResponse<Object> baseResponse) {
+                        Log.d("ssssss", "onSuccess: " + baseResponse.toString());
+                        mText.setText(baseResponse.getData().toString());
                     }
 
                     @Override
-                    public void onNext(BaseResponse<Object> objectBaseResponse) {
-                        mText.setText(objectBaseResponse.getData().toString());
+                    public void onFailure(Throwable e, String errorMessage, boolean netWork) {
+                        Log.d("ssssss", "errorMessage: " + errorMessage.toString());
                     }
 
-                    @Override
-                    public void onError(Throwable e) {
-
-                    }
-
-                    @Override
-                    public void onComplete() {
-                        hideDialog();
-                    }
                 });
     }
 }

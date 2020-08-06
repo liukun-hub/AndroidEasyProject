@@ -32,24 +32,24 @@ android {
 }
 
 dependencies {
-    implementation librarys.libs
-    implementation librarys.appcompat
-    implementation librarys.constraintlayout
-    implementation librarys.junit
-    implementation librarys.test_ext
-    implementation librarys.espresso_core
-    implementation librarys.recyclerview
+    fileTree(dir: "libs", include: ["*.jar"])
+    api librarys.appcompat
+    api librarys.constraintlayout
+    api librarys.junit
+    api librarys.test_ext
+    api librarys.espresso_core
+    api librarys.recyclerview
 
     //网络相关
-    //网络相关
-    api 'com.squareup.retrofit2:adapter-rxjava2:2.7.2'
-    api 'com.squareup.retrofit2:converter-gson:2.7.2'
-    api 'com.squareup.okhttp3:logging-interceptor:4.2.2'
-    api 'com.squareup.okhttp3:okhttp:4.6.0'
+    api 'com.squareup.retrofit2:adapter-rxjava2:2.9.0'
+    api 'com.squareup.retrofit2:converter-gson:2.9.0'
+    api 'com.squareup.okhttp3:logging-interceptor:4.8.0'
+    api 'com.squareup.okhttp3:okhttp:4.8.0'
     api 'io.reactivex.rxjava2:rxjava:2.2.18'
     api 'io.reactivex.rxjava2:rxandroid:2.1.1'
 
 
     //日志
     api 'com.orhanobut:logger:2.2.0'
+    api 'androidx.cardview:cardview:1.0.0'
 }
